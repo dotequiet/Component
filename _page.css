@@ -1,0 +1,113 @@
+.page {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  margin: 10px 0;
+  font-size: 12px;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.page .first-page,
+.page .last-page,
+.page .pre-page,
+.page .next-page {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 15px;
+  border: 1px solid #e2e2e2;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 -1px 0 0;
+}
+.page .first-page {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.page .last-page {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.page .hid {
+  display: none;
+}
+.page .cursor-pointer {
+  cursor: pointer;
+  float: left;
+}
+.page .skip-page .goto-page:hover,
+.page .cursor-pointer:hover{
+  background: #f60;
+  opacity: 0.8;
+  color: #fff;
+}
+.page .page-list {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #fff;
+  float: left;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.page .page-list li {
+  display: inline-block;
+  padding: 0 10px;
+  border: 1px solid #e2e2e2;
+  height: 28px;
+  line-height: 28px;
+  margin: 0 -1px 5px 0;
+  float: left;
+}
+.page .page-list .active {
+  background: #f60;
+  color: #fff;
+  border: 1px solid #f60;
+}
+.page .skip-page {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  line-height: 25px;
+  color: #999;
+}
+.page .skip-page .skip-page-val {
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid #e2e2e2;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  vertical-align: top;
+  background-color: #fff;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  width: 40px;
+  margin: 0 5px;
+  text-align: center;
+}
+.page .skip-page .goto-page {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid #e2e2e2;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  vertical-align: top;
+  background-color: #fff;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  margin-left: 5px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #333;
+}
+.page .skip-page em.current-page {
+  color: #f60;
+  margin: 0 3px;
+  font-style: normal;
+}
