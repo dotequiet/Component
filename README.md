@@ -8,7 +8,8 @@
     
       use:  PageView = require('*/pageview/_page.js')
             new PageView(pageSize, pageNo, getAjaxCallBack)
- goole更新
+  goole更新
+  
       大家以后不要用document.body.scrollTop获取/设置页面滚动条的位置了。chrome 61开始不再支持了。改用  
       document.scrollingElement.scrollTop。所以兼容代码可以写成function bodyOrHtml() => {
         if ('scrollingElement' in document) {
