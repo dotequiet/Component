@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1">
+    <title>hammer action</title>
+    <script type="text/javascript" src='js/hammer.js'></script>
+    <script type="text/javascript" src='js/zepto.js'></script>
+    <style type="text/css">
+    .move {
+        width: 200px;
+        height: 100px;
+        background: #4ccdb6;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="move"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+var startX = '';
+var startY = '';
+var currentX = '';
+var currentY = '';
+var scaleX = '';
+var scaleY = '';
+var el = document.querySelector('.move');
+var hammerAction = new Hammer(el);
+hammerAction.add(new Hammer.Pinch({
+    threshold: 0
+})).recognizeWith([hammerAction.get('pan')]);
+hammerAction.on("panstart panmove panend pancancel", action);
+hammerAction.on("pinchin pinchout", onPinch);
+
+function action(event) {
+    var moveX = event.changedPointers[0].pageX;
+    var moveY = event.changedPointers[0].pageY;
+    if (startX === '' && startY === '') {
+        startX = moveX;
+        startY = moveY;
+    }
+    var setX = moveX - startX;
+    var setY = moveY - startY;
+    if (currentX === '' && currentY === '') {
+        currentX = 0 + setX;
+        currntY = 0 + setY;
+        $('.move').css('transform', 'translate3d(' + currentX + 'px,' + currntY + 'px,0px)')
+    } else {
+        currentX += setX;
+        currntY += setY;
+        $('.move').css('transform', 'translate3d(' + currentX + 'px,' + currntY + 'px,0px)')
+    }
+    startX = moveX;
+    startY = moveY;
+    if (event.type === 'pancancel' || event.type === 'panend') {
+        startX = '';
+        startY = '';
+    }
+}
+
+function onPinch(event) {
+    if (event.type === 'pinchout') {
+        var wid = +($('.move').css('width').replace('px', ''));
+        var hig = +($('.move').css('height').replace('px', ''));
+        if (wid < 600 && hig < 600) {
+            $('.move').css('width', (wid + 1.5) + 'px');
+            $('.move').css('height', (hig + 1.5) + 'px');
+        }
+    }
+    if (event.type === 'pinchin') {
+        var wid = +($('.move').css('width').replace('px', ''));
+        var hig = +($('.move').css('height').replace('px', ''));
+        if (wid > 80 && hig > 80) {
+            $('.move').css('width', (wid - 1.5) + 'px');
+            $('.move').css('height', (hig - 1.5) + 'px');
+        }
+    }
+}
+</script>
