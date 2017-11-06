@@ -1,5 +1,5 @@
 /*
-简历一个id为js-page的div引入jQuery与_page.js在页面new MetPage(总页数，当前页数，回调函数)
+建立一个id为js-page的div引入jQuery与_page.js在页面new MetPage(总页数，当前页数，回调函数)
 */
 
 var MetPage = function(pagecount, currentpage, fn) {
