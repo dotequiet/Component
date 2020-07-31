@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      html,body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .clip-path-slide {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .clip-path-slide-black {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+        text-align: center;
+        line-height: 50;
+        color: #fff;
+      }
+      .clip-path-slide-white {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+        text-align: center;
+        line-height: 50;
+        color: #4ccdb6;
+      }
+      .clip-path-slide-white.in {
+        z-index: 1;
+      }
+      .clip-path-slide-black.in {
+        z-index: 1;
+      }
+      .clip-path-slide-item {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .clip-path-slide-index.active {
+        background-color: rgba(255,0,0,.9);
+      }
+      /* 动画细节在这里 */
+      .clip-path-slide .in {
+        animation: clipCircleIn 1s;
+      }
+      @keyframes clipCircleIn {
+        0%   {
+          -webkit-clip-path: circle(0 at 0% 80%);
+          clip-path: circle(0 at 0% 80%);
+        }
+        100% {
+          -webkit-clip-path: circle(100% at 50% 50%);
+          clip-path: circle(100% at 50% 50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .btn {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        z-index: 10;
+      }
+      .white {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        background-color: #f60;
+        cursor: pointer;
+      }
+      .black {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        cursor: pointer;
+        background-color: #000;
+      }
+    </style>
+    <div class="clip-path-slide">
+      <div class="clip-path-slide-white" style="display: block;">
+        <div class="clip-path-slide-item" style="background-color: #000;">dssadasdsadsadas</div>
+      </div>
+      <div class="clip-path-slide-black">
+        <div class="clip-path-slide-item" style="background-color: #f60;">dsadasdasdsadsadasdas</div>
+      </div>
+    </div>
+    <div class="btn">
+      <div class="white" onClick="changBlack()"></div>
+      <div class="black" onClick="changWhite()"></div>
+    </div>
+  <script>
+    document.querySelector('.clip-path-slide-white').addEventListener('animationend', () => {
+      document.querySelector('.clip-path-slide-black').style.display = '';
+    })
+    document.querySelector('.clip-path-slide-black').addEventListener('animationend', () => {
+      document.querySelector('.clip-path-slide-white').style.display = '';
+    })
+    const changBlack = () => {
+      let slideWhite = document.querySelector('.clip-path-slide-white')
+      let slideBlack = document.querySelector('.clip-path-slide-black')
+      slideBlack.classList.remove('out');
+      slideBlack.classList.add('in');
+      slideBlack.style.display = 'block';
+      slideWhite.classList.remove('in');
+      slideWhite.classList.add('out');
+    }
+    const changWhite = () => {
+      let slideBlack = document.querySelector('.clip-path-slide-black')
+      let slideWhite = document.querySelector('.clip-path-slide-white')
+      slideWhite.classList.remove('out');
+      slideWhite.classList.add('in');
+      slideWhite.style.display = 'block';
+      slideBlack.classList.remove('in');
+      slideBlack.classList.add('out');
+    }
+  </script>
+  </body>
+</html>
